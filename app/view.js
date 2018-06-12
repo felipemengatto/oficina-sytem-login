@@ -24,18 +24,24 @@ export default class View {
 			if (Routes[routeName].private) {
 
 				if (this.isLogged()) {
-					this.render(Routes[routeName].template);
+					this.createInstaneComponent(routeName);
 					return;
 				}
-
-				this.render(Routes['#default'].template);
+				
+				this.createInstaneComponent('#default');
 				return;
 			}
 
-			this.render(Routes[routeName].template);
-
+			this.createInstaneComponent(routeName);
 		} else {
-			this.render(Routes['#default'].template);
+			this.createInstaneComponent('#default');
 		}
+	}
+
+	createInstaneComponent(routeName) {
+		const { component } = Routes[routeName];
+		const ComponentInstance = new component();
+		this.render(ComponentInstance.render());
+		ComponentInstance.bind();
 	}
 }

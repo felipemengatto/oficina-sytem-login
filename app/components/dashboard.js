@@ -9,12 +9,19 @@ export default class Dashboard {
 		window.location.hash = '#home';
 	}
 
+	bind() {
+
+		document.getElementById('logout').addEventListener('click', () => {
+			this.logout();
+		});
+
+	}
+
 	render() {
 		return `
-			<div class="info">
-				<p>Parabéns você está logado, você pode sair clicando aqui 
-					<button onclick="logout();" class="btn btn-warning"> Sair </button>
-				</p>
+			<div class="alert alert-success">
+				Parabéns você está logado, você pode sair clicando aqui: 
+					<button id="logout" class="btn btn-outline-dark"> Sair do Sistema </button>
 			</div>
 		`;
 	}

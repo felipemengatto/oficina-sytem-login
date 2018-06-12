@@ -1,10 +1,17 @@
 import axios from 'axios';
+import swal from 'sweetalert';
 
 export default class Login {
 
 	constructor() {
-		window.loginAuth = this.loginAuth;
+        this.isLogged();
 	}
+
+    isLogged() {
+        if (Boolean(localStorage.getItem('authenticated'))) {
+            window.location.hash = '#dashboard';
+        }
+    }
 
 	loginAuth() {
 		const data = {
@@ -18,31 +25,44 @@ export default class Login {
 				if (data.authenticated) {
 					localStorage.setItem('authenticated', data.authenticated);
 					window.location.hash = '#dashboard';
+				} else {
+					swal('Ops!', 'Usuário ou Senha Incorretos!', 'error');
 				}
 
-			})
-			.catch(function (error) {
-				console.log(error);
 			});
+	}
+
+	bind() {
+
+		document.getElementById('loginAuth').addEventListener('click', () => {
+			this.loginAuth();
+		});
+
 	}
 
 	render() {
 		return `
-			<div class="w-25">
-				<form name="FormLogin" onsubmit="return false;">
-				    <div class="form-group">
-				        <label for="email-input">E-mail</label>
-				        <input name="email" type="text" class="form-control" id="email" placeholder="E-mail">
-				    </div>
-				    <div class="form-group">
-				        <label for="password-input">Senha</label>
-				        <input name="password" type="text" class="form-control" id="password" placeholder="password">
-				    </div>
-				    <input type="submit" 
-				    	onClick="loginAuth();"
-				    	value="Login" class="btn btn-primary"></input>
-				</form>
-			</div>
+				<div class="row justify-content-center">
+					<div class="col-6">
+						<div class="card mt-5">
+							<div class="card-body">
+								<h5 class="card-title text-center">Login</h5>
+								<form name="FormLogin" onsubmit="return false;">
+								    <div class="form-group">
+								        <label for="email-input">E-mail</label>
+								        <input name="email" type="text" class="form-control" id="email" placeholder="bolachinhavoavoa@gmail.com">
+								    </div>
+								    <div class="form-group">
+								        <label for="password-input">Senha</label>
+								        <input name="password" type="password" class="form-control" id="password" placeholder="************">
+								    </div>
+								    <input type="submit" id="loginAuth"
+								    	value="Login" class="btn btn-primary"></input>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
 		`;
 	}
 

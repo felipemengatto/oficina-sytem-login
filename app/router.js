@@ -4,19 +4,19 @@ import Dashboard from './components/dashboard';
 
 export default {
 	'#home': {
-		template: new Home().render(),
+		component: Home,
 		private: false,
 	},
 	'#login': {
-		template: new Login().render(),
+		component: Login,
 		private: false,
 	},
 	'#dashboard': {
-		template: new Dashboard().render(),
+		component: Dashboard,
 		private: true
 	},
 	'#default': {
-		template: new Home().render(),
+		component: Home,
 		private: false,
 	}
 }
