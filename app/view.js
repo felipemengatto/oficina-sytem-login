@@ -21,6 +21,11 @@ export default class View {
 
 			const routeName = window.location.hash;
 
+			if (!Routes[routeName]) {
+				this.createInstaneComponent('#default');
+				return;
+			}
+
 			if (Routes[routeName].private) {
 
 				if (this.isLogged()) {
