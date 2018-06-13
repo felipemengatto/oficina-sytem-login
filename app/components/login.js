@@ -19,7 +19,7 @@ export default class Login {
 			senha: document.FormLogin.password.value,
 		};
 
-		axios.post('http://localhost:3000/login', data)
+		axios.post('http://oficina.oincriveleduardo.com.br/login', data)
 			.then(function ({data}) {
 				
 				if (data.authenticated) {

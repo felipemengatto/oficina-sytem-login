@@ -1,6 +1,6 @@
 export default class Home {
 
-	constructor() {
+	constructor() { 
 		this.isLogged();
 	}
 

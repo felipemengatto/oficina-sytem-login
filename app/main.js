@@ -1,3 +1,4 @@
+import './main.css'
 import View from './view';
 
 class App {
