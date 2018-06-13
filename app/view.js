@@ -22,28 +22,28 @@ export default class View {
 			const routeName = window.location.hash;
 
 			if (!Routes[routeName]) {
-				this.createInstaneComponent('#default');
+				this.createInstanceComponent('#default');
 				return;
 			}
 
 			if (Routes[routeName].private) {
 
 				if (this.isLogged()) {
-					this.createInstaneComponent(routeName);
+					this.createInstanceComponent(routeName);
 					return;
 				}
 				
-				this.createInstaneComponent('#default');
+				this.createInstanceComponent('#default');
 				return;
 			}
 
-			this.createInstaneComponent(routeName);
+			this.createInstanceComponent(routeName);
 		} else {
-			this.createInstaneComponent('#default');
+			this.createInstanceComponent('#default');
 		}
 	}
 
-	createInstaneComponent(routeName) {
+	createInstanceComponent(routeName) {
 		const { component } = Routes[routeName];
 		const ComponentInstance = new component();
 		this.render(ComponentInstance.render());
